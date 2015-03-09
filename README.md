@@ -1,5 +1,7 @@
 # BBSInspector
 
+/!\ Work in progress, this library is not working at the moment. /!\
+
 Extendable device and application information in your iOS application
 
 ## Installation
