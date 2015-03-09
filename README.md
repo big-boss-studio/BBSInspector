@@ -8,7 +8,7 @@ This library has not been shipped to Cocoapods, coming soon.
 
 ## Getting started
 
-Simply enable inspector in your AppDelegate to add right bottom button to your app:
+Simply enable inspector in your ```AppDelegate``` (```application:didFinishLaunchingWithOptions:``` is a good place to do it) to add right bottom button to your app:
 ```swift
 [...]
 window?.makeKeyAndVisible()
@@ -29,6 +29,7 @@ customInspectorDataSource.customInspectorInformationItems = {
         // Custom InspectorInformation items
     ]
 }
+self.enableInspector(dataSource: customInspectorDataSource)
 ```
 
 A basic information item represents data with a title and a description, touching its cell in Inspector will copy the caption into clipboard.
