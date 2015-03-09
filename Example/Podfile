@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'BBSInspector', :exclusive => true do
+  pod "BBSInspector", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "BBSInspector", :path => "../"
+
+  
+end
