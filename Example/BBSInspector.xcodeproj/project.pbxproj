@@ -13,12 +13,12 @@
 		F188A2DD1AADEC4B00717239 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F188A2D81AADEC4B00717239 /* LaunchScreen.xib */; };
 		F188A2DE1AADEC4B00717239 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F188A2DA1AADEC4B00717239 /* Main.storyboard */; };
 		F188A2DF1AADEC4B00717239 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F188A2DC1AADEC4B00717239 /* Images.xcassets */; };
-		F188A2FD1AADEC6B00717239 /* AppDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2F51AADEC6B00717239 /* AppDelegateExtensions.swift */; };
-		F188A2FE1AADEC6B00717239 /* InspectorBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2F61AADEC6B00717239 /* InspectorBottomView.swift */; };
-		F188A2FF1AADEC6B00717239 /* InspectorCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2F71AADEC6B00717239 /* InspectorCornerButton.swift */; };
-		F188A3001AADEC6B00717239 /* InspectorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2F81AADEC6B00717239 /* InspectorDataSource.swift */; };
-		F188A3011AADEC6B00717239 /* InspectorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2F91AADEC6B00717239 /* InspectorInformation.swift */; };
-		F188A3021AADEC6B00717239 /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A2FA1AADEC6B00717239 /* InspectorViewController.swift */; };
+		F188A30C1AADF00800717239 /* AppDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A3061AADF00800717239 /* AppDelegateExtensions.swift */; };
+		F188A30D1AADF00800717239 /* InspectorBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A3071AADF00800717239 /* InspectorBottomView.swift */; };
+		F188A30E1AADF00800717239 /* InspectorCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A3081AADF00800717239 /* InspectorCornerButton.swift */; };
+		F188A30F1AADF00800717239 /* InspectorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A3091AADF00800717239 /* InspectorDataSource.swift */; };
+		F188A3101AADF00800717239 /* InspectorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A30A1AADF00800717239 /* InspectorInformation.swift */; };
+		F188A3111AADF00800717239 /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188A30B1AADF00800717239 /* InspectorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,12 +42,12 @@
 		F188A2D91AADEC4B00717239 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F188A2DB1AADEC4B00717239 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F188A2DC1AADEC4B00717239 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F188A2F51AADEC6B00717239 /* AppDelegateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtensions.swift; sourceTree = "<group>"; };
-		F188A2F61AADEC6B00717239 /* InspectorBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorBottomView.swift; sourceTree = "<group>"; };
-		F188A2F71AADEC6B00717239 /* InspectorCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorCornerButton.swift; sourceTree = "<group>"; };
-		F188A2F81AADEC6B00717239 /* InspectorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorDataSource.swift; sourceTree = "<group>"; };
-		F188A2F91AADEC6B00717239 /* InspectorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorInformation.swift; sourceTree = "<group>"; };
-		F188A2FA1AADEC6B00717239 /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
+		F188A3061AADF00800717239 /* AppDelegateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtensions.swift; sourceTree = "<group>"; };
+		F188A3071AADF00800717239 /* InspectorBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorBottomView.swift; sourceTree = "<group>"; };
+		F188A3081AADF00800717239 /* InspectorCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorCornerButton.swift; sourceTree = "<group>"; };
+		F188A3091AADF00800717239 /* InspectorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorDataSource.swift; sourceTree = "<group>"; };
+		F188A30A1AADF00800717239 /* InspectorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorInformation.swift; sourceTree = "<group>"; };
+		F188A30B1AADF00800717239 /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 		F188A2A91AADEC0900717239 = {
 			isa = PBXGroup;
 			children = (
-				F188A2F01AADEC6B00717239 /* Pod */,
+				F188A3031AADF00800717239 /* Library */,
 				F188A2B41AADEC0900717239 /* BBSInspector */,
 				F188A2CA1AADEC0900717239 /* BBSInspectorTests */,
 				F188A2B31AADEC0900717239 /* Products */,
@@ -141,24 +141,32 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		F188A2F01AADEC6B00717239 /* Pod */ = {
+		F188A3031AADF00800717239 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				F188A2F31AADEC6B00717239 /* Classes */,
+				F188A3041AADF00800717239 /* Assets */,
+				F188A3051AADF00800717239 /* Classes */,
 			);
-			name = Pod;
-			path = ../Pod;
+			name = Library;
+			path = ../Library;
 			sourceTree = "<group>";
 		};
-		F188A2F31AADEC6B00717239 /* Classes */ = {
+		F188A3041AADF00800717239 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F188A2F51AADEC6B00717239 /* AppDelegateExtensions.swift */,
-				F188A2F61AADEC6B00717239 /* InspectorBottomView.swift */,
-				F188A2F71AADEC6B00717239 /* InspectorCornerButton.swift */,
-				F188A2F81AADEC6B00717239 /* InspectorDataSource.swift */,
-				F188A2F91AADEC6B00717239 /* InspectorInformation.swift */,
-				F188A2FA1AADEC6B00717239 /* InspectorViewController.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F188A3051AADF00800717239 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F188A3061AADF00800717239 /* AppDelegateExtensions.swift */,
+				F188A3071AADF00800717239 /* InspectorBottomView.swift */,
+				F188A3081AADF00800717239 /* InspectorCornerButton.swift */,
+				F188A3091AADF00800717239 /* InspectorDataSource.swift */,
+				F188A30A1AADF00800717239 /* InspectorInformation.swift */,
+				F188A30B1AADF00800717239 /* InspectorViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -265,12 +273,12 @@
 			files = (
 				F188A2BA1AADEC0900717239 /* ViewController.swift in Sources */,
 				F188A2B81AADEC0900717239 /* AppDelegate.swift in Sources */,
-				F188A2FD1AADEC6B00717239 /* AppDelegateExtensions.swift in Sources */,
-				F188A3011AADEC6B00717239 /* InspectorInformation.swift in Sources */,
-				F188A2FF1AADEC6B00717239 /* InspectorCornerButton.swift in Sources */,
-				F188A3001AADEC6B00717239 /* InspectorDataSource.swift in Sources */,
-				F188A3021AADEC6B00717239 /* InspectorViewController.swift in Sources */,
-				F188A2FE1AADEC6B00717239 /* InspectorBottomView.swift in Sources */,
+				F188A30C1AADF00800717239 /* AppDelegateExtensions.swift in Sources */,
+				F188A3101AADF00800717239 /* InspectorInformation.swift in Sources */,
+				F188A30E1AADF00800717239 /* InspectorCornerButton.swift in Sources */,
+				F188A30F1AADF00800717239 /* InspectorDataSource.swift in Sources */,
+				F188A3111AADF00800717239 /* InspectorViewController.swift in Sources */,
+				F188A30D1AADF00800717239 /* InspectorBottomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
