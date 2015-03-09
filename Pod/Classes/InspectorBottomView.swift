@@ -1,0 +1,218 @@
+//
+//  InspectorBottomView.swift
+//  BBSInspector
+//
+//  Created by Cyril Chandelier on 05/03/15.
+//  Copyright (c) 2015 Big Boss Studio. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+let InspectorBottomViewGapX = CGFloat(10.0)
+let InspectorBottomViewCornerSide = CGFloat(30.0)
+let InspectorBottomViewRatioPixelDifference = CGFloat(1.0)
+
+internal class InspectorBottomView: UIView
+{
+    /**
+    Delegate
+    */
+    internal var delegate: InspectorBottomViewDelegate?
+    
+    /**
+    Internal views
+    */
+    private var contentLabel: UILabel!
+    private var stripView: UIView!
+    private var cornerButton: InspectorCornerButton!
+    
+    /**
+    Content displayed in bottom view label
+    */
+    private var content: String? {
+        if let infoDictionary = NSBundle.mainBundle().infoDictionary {
+            let appName = infoDictionary[kCFBundleNameKey] as String
+            let appVersion = infoDictionary[kCFBundleVersionKey] as String
+            return "\(appName) (\(appVersion))"
+        }
+        return nil
+    }
+    
+    /**
+    Current state of opening
+    */
+    var opened: Bool = false
+    
+    // MARK: - Initializers
+    
+    override internal init()
+    {
+        super.init()
+        commonInit()
+    }
+    
+    override internal init(frame: CGRect)
+    {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required internal init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit()
+    {
+        self.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin)
+    }
+    
+    // MARK: - Setup
+    
+    private func setup()
+    {
+        reset()
+        
+        let stripViewFrame = CGRectMake(0, 0, CGRectGetWidth(self.bounds) - InspectorBottomViewCornerSide / 2 + InspectorBottomViewRatioPixelDifference,
+            CGRectGetHeight(self.bounds))
+        
+        // Content label
+        let delegateContent = delegate?.contentToDisplayInInspectorBottomView(self)
+        let content = delegateContent == nil ? self.content : delegateContent
+        let contentLabel = UILabel(frame: CGRectMake(InspectorBottomViewGapX,
+            0,
+            CGRectGetWidth(stripViewFrame) - 2 * InspectorBottomViewGapX,
+            CGRectGetHeight(stripViewFrame)))
+        contentLabel.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+        contentLabel.font = UIFont.systemFontOfSize(12.0)
+        contentLabel.textColor = UIColor.whiteColor()
+        contentLabel.text = content
+        
+        // Use blur for strip view on iOS 8+ systems, a simple semi-transparent view otherwise
+        var stripView: UIView
+        if NSClassFromString("UIVisualEffectView") != nil
+        {
+            stripView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+            stripView.frame = stripViewFrame
+            (stripView as UIVisualEffectView).contentView .addSubview(contentLabel)
+        }
+        else
+        {
+            stripView = UIView(frame: stripViewFrame)
+            
+            let transparentView = UIView(frame: stripView.bounds)
+            transparentView.backgroundColor = UIColor.blackColor()
+            transparentView.alpha = 0.5
+            transparentView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+            
+            stripView.addSubview(transparentView)
+            stripView.addSubview(contentLabel)
+        }
+        stripView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+        stripView.hidden = true
+        self.addSubview(stripView)
+        
+        // Corner button
+        let cornerButton = InspectorCornerButton(frame: CGRectMake(CGRectGetWidth(self.bounds) - InspectorBottomViewCornerSide, 0, InspectorBottomViewCornerSide, CGRectGetHeight(self.bounds)))
+        cornerButton.setStyle(style: InspectorCornerButtonStyle.Plus, animated: false)
+        cornerButton.addTarget(self, action: "toggle", forControlEvents: UIControlEvents.TouchUpInside)
+        cornerButton.autoresizingMask = (UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin)
+        self.addSubview(cornerButton)
+        
+        // Gesture
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapDetected:")
+        stripView.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Hold important views
+        self.contentLabel = contentLabel
+        self.stripView = stripView
+        self.cornerButton = cornerButton
+    }
+    
+    private func reset()
+    {
+        contentLabel = nil
+        stripView = nil
+        cornerButton = nil
+    }
+    
+    // MARK: - State management
+    
+    /**
+    Add inspector bottom view to screen
+    */
+    internal func show(inView view: UIView)
+    {
+        self.frame = CGRectMake(0, CGRectGetHeight(view.frame) - InspectorBottomViewCornerSide + InspectorBottomViewRatioPixelDifference, CGRectGetWidth(view.frame), InspectorBottomViewCornerSide)
+        
+        setup()
+        
+        view.addSubview(self)
+    }
+    
+    /**
+    Remove inspector bottom view from screen
+    */
+    internal func hide()
+    {
+        self.removeFromSuperview()
+    }
+    
+    /**
+    Open or close inspector bottom view according to its current state
+    */
+    internal func toggle()
+    {
+        if self.superview == nil {
+            return
+        }
+        
+        // Animation variables
+        let initialY = (opened ? 0 : CGRectGetHeight(self.bounds) + InspectorBottomViewRatioPixelDifference)
+        let finalY = (opened ? CGRectGetHeight(self.bounds) + InspectorBottomViewRatioPixelDifference : 0)
+        
+        // Prepare animation
+        stripView.frame.origin.y = initialY
+        stripView.hidden = false
+        
+        // Animate
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.stripView.frame.origin.y = finalY
+            }) { (finished) -> Void in
+            self.opened = !self.opened
+            if !self.opened {
+                self.stripView.hidden = true
+            }
+        }
+        
+        // Update corner button style
+        cornerButton.setStyle(style: (opened ? InspectorCornerButtonStyle.Plus : InspectorCornerButtonStyle.Close), animated: true)
+    }
+    
+    // MARK: - UI Actions
+    
+    internal func tapDetected(gesture: UITapGestureRecognizer)
+    {
+        delegate?.inspectorBottomViewTapped(self)
+    }
+}
+
+protocol InspectorBottomViewDelegate
+{
+    /**
+    Called when user tap on an open inspector bottom view
+    
+    :param: inspectorBottomView The touched inspector bottom view
+    */
+    func inspectorBottomViewTapped(bottomView: InspectorBottomView)
+    
+    /**
+    Called when configuring the bottom view, default content will be used if return string is empty
+    
+    :param: bottomView The calling InspectorBottomView object
+    :returns: a string to be displayed in bottom view label
+    */
+    func contentToDisplayInInspectorBottomView(bottomView: InspectorBottomView) -> String?
+}
