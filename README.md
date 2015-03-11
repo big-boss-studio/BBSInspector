@@ -6,6 +6,9 @@
 
 Extendable device and application information in your iOS application
 
+![ScreenShot](https://raw.github.com/bigbossstudio-dev/BBSInspector/master/Screenshots/01_opened.png)
+![ScreenShot](https://raw.github.com/bigbossstudio-dev/BBSInspector/master/Screenshots/03_inspector.png)
+
 ## Installation
 
 Using CocoaPods (iOS 8 and above): ```pod 'BBSInspector'```
