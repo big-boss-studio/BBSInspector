@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.author       = { "Cyril Chandelier" => "cyril.chandelier@gmail.com" }
   s.platform     = :ios, '8.0'
   s.source       = { :git => "https://github.com/bigbossstudio-dev/BBSInspector.git", :tag => "0.1.0" }
-  s.source_files  = "Classes", "Library/Classes/*.{h,m,swift}"
+  s.source_files = "Classes", "Library/Classes/*.{h,m,swift}"
+  s.requires_arc = true
 end
