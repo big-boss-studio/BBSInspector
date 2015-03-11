@@ -1,5 +1,5 @@
 //
-//  InspectorDataSource.swift
+//  BBSInspectorDataSource.swift
 //  BBSInspector
 //
 //  Created by Cyril Chandelier on 06/03/15.
@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-public class InspectorDataSource
+@objc public class BBSInspectorDataSource
 {
     /**
     Served data array
     */
-    private var informationItems: [InspectorInformation]
+    private var informationItems: [BBSInspectorInformation]
     
     /**
     Entry point to register more information items in list
     */
-    public var customInspectorInformationItems: (() -> [InspectorInformation])?
+    public var customInspectorInformationItems: (() -> [BBSInspectorInformation])?
     
     /**
     Convenient accessor for the count of information items
@@ -31,7 +31,7 @@ public class InspectorDataSource
     /**
     Read only access to information items through subscript syntax
     */
-    public subscript(index: Int) -> InspectorInformation {
+    public subscript(index: Int) -> BBSInspectorInformation {
         get {
             return informationItems[index]
         }
@@ -51,7 +51,7 @@ public class InspectorDataSource
     
     public init()
     {
-        informationItems = [InspectorInformation]()
+        informationItems = [BBSInspectorInformation]()
     }
     
     // MARK: - Data management
@@ -66,22 +66,22 @@ public class InspectorDataSource
         
         // App information name
         let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey] as String))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey] as String))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey] as String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey] as String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as String))
         
         // Device information
         let device = UIDevice.currentDevice()
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Device model", comment: ""), caption: device.model))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Device name", comment: ""), caption: device.name))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("System name", comment: ""), caption: device.systemName))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("System version", comment: ""), caption: device.systemVersion))
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Identifier for vendor", comment: ""), caption: device.identifierForVendor.UUIDString))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Device model", comment: ""), caption: device.model))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Device name", comment: ""), caption: device.name))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("System name", comment: ""), caption: device.systemName))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("System version", comment: ""), caption: device.systemVersion))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Identifier for vendor", comment: ""), caption: device.identifierForVendor.UUIDString))
         
         // Locale
         let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as String
         let language = NSLocale.preferredLanguages().first as String
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Locale", comment: ""), caption: "\(language)_\(countryCode)"))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Locale", comment: ""), caption: "\(language)_\(countryCode)"))
         
         // Push notifications
         var pushNotificationsEnabled = false
@@ -92,7 +92,7 @@ public class InspectorDataSource
             let enabledRemoteNotificationTypes = UIApplication.sharedApplication().enabledRemoteNotificationTypes()
             pushNotificationsEnabled = (enabledRemoteNotificationTypes != UIRemoteNotificationType.None)
         }
-        informationItems.append(InspectorInformation(title: NSLocalizedString("Push notifications", comment: ""), caption: (pushNotificationsEnabled ? NSLocalizedString("Enabled", comment: "") : NSLocalizedString("Disabled", comment: "")), captionColor: (pushNotificationsEnabled ? UIColor.greenColor() : UIColor.redColor()), action: nil))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Push notifications", comment: ""), caption: (pushNotificationsEnabled ? NSLocalizedString("Enabled", comment: "") : NSLocalizedString("Disabled", comment: "")), captionColor: (pushNotificationsEnabled ? UIColor.greenColor() : UIColor.redColor()), action: nil))
         
         // Device token
         if (pushNotificationsEnabled) {
@@ -100,7 +100,7 @@ public class InspectorDataSource
             if deviceToken != nil {
                 deviceTokenString = deviceToken!.description.stringByReplacingOccurrencesOfString("<", withString: "").stringByReplacingOccurrencesOfString(">", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
             }
-            informationItems.append(InspectorInformation(title: "Push token", caption: deviceTokenString))
+            informationItems.append(BBSInspectorInformation(title: "Push token", caption: deviceTokenString))
         }
         
         // Custom items

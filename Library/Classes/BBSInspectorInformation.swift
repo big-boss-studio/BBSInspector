@@ -1,5 +1,5 @@
 //
-//  InspectorInformation.swift
+//  BBSInspectorInformation.swift
 //  BBSInspector
 //
 //  Created by Cyril Chandelier on 05/03/15.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-let InspectorInformationDefaultCaptionColor = UIColor.blackColor()
+let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
 
-public class InspectorInformation
+@objc public class BBSInspectorInformation: NSObject
 {
     public var title: String
     public var caption: String
@@ -28,7 +28,7 @@ public class InspectorInformation
     */
     convenience public init(title: String, caption: String)
     {
-        self.init(title: title, caption: caption, captionColor: InspectorInformationDefaultCaptionColor, nil)
+        self.init(title: title, caption: caption, captionColor: BBSInspectorInformationDefaultCaptionColor, nil)
     }
     
     /**

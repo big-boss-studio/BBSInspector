@@ -1,5 +1,5 @@
 //
-//  InspectorViewController.swift
+//  BBSInspectorViewController.swift
 //  BBSInspector
 //
 //  Created by Cyril Chandelier on 05/03/15.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-let InspectorViewControllerStatusBarStyle = UIStatusBarStyle.Default
+let BBSInspectorViewControllerStatusBarStyle = UIStatusBarStyle.Default
 
-internal class InspectorViewController: UITableViewController
+internal class BBSInspectorViewController: UITableViewController
 {
     /**
     Close bar button item. Tapping on it will try close this view controller
@@ -23,17 +23,17 @@ internal class InspectorViewController: UITableViewController
     /**
     Store application status bar style to reapply it when inspector is closed
     */
-    private var previousStatusBarStyle: UIStatusBarStyle = InspectorViewControllerStatusBarStyle
+    private var previousStatusBarStyle: UIStatusBarStyle = BBSInspectorViewControllerStatusBarStyle
     
     /**
     Data source
     */
-    internal var dataSource: InspectorViewControllerDataSource?
+    internal var dataSource: BBSInspectorViewControllerDataSource?
     
     /**
     Delegate
     */
-    internal var delegate: InspectorViewControllerDelegate?
+    internal var delegate: BBSInspectorViewControllerDelegate?
     
     // MARK: - Initializers
     
@@ -67,8 +67,8 @@ internal class InspectorViewController: UITableViewController
         self.navigationItem.leftBarButtonItem = closeBarButtonItem
         
         previousStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
-        if previousStatusBarStyle != InspectorViewControllerStatusBarStyle {
-            UIApplication.sharedApplication().setStatusBarStyle(InspectorViewControllerStatusBarStyle, animated: true)
+        if previousStatusBarStyle != BBSInspectorViewControllerStatusBarStyle {
+            UIApplication.sharedApplication().setStatusBarStyle(BBSInspectorViewControllerStatusBarStyle, animated: true)
         }
     }
     
@@ -131,7 +131,7 @@ internal class InspectorViewController: UITableViewController
     
     internal func close()
     {
-        if previousStatusBarStyle != InspectorViewControllerStatusBarStyle {
+        if previousStatusBarStyle != BBSInspectorViewControllerStatusBarStyle {
             UIApplication.sharedApplication().setStatusBarStyle(previousStatusBarStyle, animated: true)
         }
         
@@ -139,7 +139,7 @@ internal class InspectorViewController: UITableViewController
     }
 }
 
-protocol InspectorViewControllerDataSource
+protocol BBSInspectorViewControllerDataSource
 {
     /**
     Called when preparing the table view of a InspectorViewController object
@@ -147,7 +147,7 @@ protocol InspectorViewControllerDataSource
     :param: viewController The InspectorViewController controller asking for data count
     :returns: The number of rows to display
     */
-    func numberOfRowsInInspectorViewController(viewController: InspectorViewController) -> Int
+    func numberOfRowsInInspectorViewController(viewController: BBSInspectorViewController) -> Int
     
     /**
     Called before displaying a InspectorInformation in table view
@@ -156,10 +156,10 @@ protocol InspectorViewControllerDataSource
     :param: index The index of the asked information
     :returns: The InspectorInformation object to be displayed for this given index
     */
-    func inspectorViewController(viewController: InspectorViewController, informationAtIndex index: Int) -> InspectorInformation
+    func inspectorViewController(viewController: BBSInspectorViewController, informationAtIndex index: Int) -> BBSInspectorInformation
 }
 
-protocol InspectorViewControllerDelegate
+protocol BBSInspectorViewControllerDelegate
 {
     /**
     Called when user touch the cancel button and want to dismiss this view
@@ -167,6 +167,6 @@ protocol InspectorViewControllerDelegate
     :param: viewController The InspectorViewController that needs to be dismissed
     :param: animated Wether or not it should use animation
     */
-    func dismissInspectorViewController(viewController: InspectorViewController, animated: Bool)
+    func dismissInspectorViewController(viewController: BBSInspectorViewController, animated: Bool)
 }
 

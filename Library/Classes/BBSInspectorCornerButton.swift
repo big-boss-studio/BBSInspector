@@ -1,5 +1,5 @@
 //
-//  InspectorCornerButton.swift
+//  BBSInspectorCornerButton.swift
 //  BBSInspector
 //
 //  Created by Cyril Chandelier on 05/03/15.
@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-let InspectorCornerButtonEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+let BBSInspectorCornerButtonEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
 
-internal class InspectorCornerButton: UIButton
+internal class BBSInspectorCornerButton: UIButton
 {
     /**
     Current button style
     */
-    private var style: InspectorCornerButtonStyle = InspectorCornerButtonStyle.Plus
+    private var style: BBSInspectorCornerButtonStyle = BBSInspectorCornerButtonStyle.Plus
     
     /**
     Line layers
@@ -60,7 +60,7 @@ internal class InspectorCornerButton: UIButton
     {
         self.backgroundColor = UIColor.blackColor()
         self.clipsToBounds = true
-        self.contentEdgeInsets = InspectorCornerButtonEdgeInsets
+        self.contentEdgeInsets = BBSInspectorCornerButtonEdgeInsets
         
         // Corner mask
         let mask = CAShapeLayer()
@@ -91,7 +91,7 @@ internal class InspectorCornerButton: UIButton
     :param: style A registered InspectorCornerButtonStyle
     :param: animated Wether or not the change should be animated
     */
-    internal func setStyle(style newStyle: InspectorCornerButtonStyle, animated: Bool)
+    internal func setStyle(style newStyle: BBSInspectorCornerButtonStyle, animated: Bool)
     {
         self.style = newStyle
         
@@ -100,11 +100,11 @@ internal class InspectorCornerButton: UIButton
         var line2path: CGPathRef
         switch style
         {
-        case InspectorCornerButtonStyle.Plus:
+        case BBSInspectorCornerButtonStyle.Plus:
             line1path = self.createCenteredLineWithRadius(dimension / 2.0, angle: CGFloat(M_PI_2), offset: CGPointZero)
             line2path = self.createCenteredLineWithRadius(dimension / 2.0, angle: 0, offset: CGPointZero)
             
-        case InspectorCornerButtonStyle.Close:
+        case BBSInspectorCornerButtonStyle.Close:
             line1path = self.createCenteredLineWithRadius(dimension / 2.0, angle: -CGFloat(M_PI_4), offset: CGPointZero)
             line2path = self.createCenteredLineWithRadius(dimension / 2.0, angle: CGFloat(M_PI_4), offset: CGPointZero)
             
@@ -155,7 +155,7 @@ internal class InspectorCornerButton: UIButton
     }
 }
 
-enum InspectorCornerButtonStyle
+enum BBSInspectorCornerButtonStyle
 {
     case Plus, Close
 }

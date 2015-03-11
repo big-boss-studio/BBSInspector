@@ -12,24 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
- 
-    /**
-    1) Because we want to add items to default information items list, we create a custom data source
-    */
-    let customInspectorDataSource: InspectorDataSource = InspectorDataSource()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
+        /**
+        1) Because we want to add items to default information items list, we create a custom data source
+        */
+        let customInspectorDataSource: BBSInspectorDataSource = BBSInspectorDataSource()
+        
         /**
         2) We add some items as custom inspector information items
         */
         customInspectorDataSource.customInspectorInformationItems = {
             return [
-                InspectorInformation(title: "Test information", caption: "Click here to display an alert", captionColor: UIColor.blueColor(), action: { () -> Void in
+                BBSInspectorInformation(title: "Test information", caption: "Click here to display an alert", captionColor: UIColor.blueColor(), action: { () -> Void in
                     UIAlertView(title: "Information", message: "Hello, World!", delegate: nil, cancelButtonTitle: "OK").show()
                 })
             ]
         }
+        BBSInspector.sharedInstance.dataSource = customInspectorDataSource
         
         /**
         3) We also can override default bottom view content, the default value otherwise is ```Bundle name (bundle version)```
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         /**
         5) Finally, enable inspector
         */
-        self.enableInspector(dataSource: customInspectorDataSource)
+        BBSInspector.sharedInstance.enableInspector()
         
         return true
     }
@@ -54,12 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         /**
         6) Data source device token should be set when received
         */
-        customInspectorDataSource.deviceToken = deviceToken
+        BBSInspector.sharedInstance.dataSource.deviceToken = deviceToken
         
         /**
         7) Every time an item is added, removed or updated at runtime, reload data
         */
-        self.reloadInspectorInformation()
+        BBSInspector.sharedInstance.reloadInspectorInformation()
     }
 }
 

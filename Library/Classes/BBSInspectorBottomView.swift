@@ -1,5 +1,5 @@
 //
-//  InspectorBottomView.swift
+//  BBSInspectorBottomView.swift
 //  BBSInspector
 //
 //  Created by Cyril Chandelier on 05/03/15.
@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-let InspectorBottomViewGapX = CGFloat(10.0)
-let InspectorBottomViewCornerSide = CGFloat(30.0)
-let InspectorBottomViewRatioPixelDifference = CGFloat(1.0)
+let BBSInspectorBottomViewGapX = CGFloat(10.0)
+let BBSInspectorBottomViewCornerSide = CGFloat(30.0)
+let BBSInspectorBottomViewRatioPixelDifference = CGFloat(1.0)
 
-internal class InspectorBottomView: UIView
+internal class BBSInspectorBottomView: UIView
 {
     /**
     Delegate
     */
-    internal var delegate: InspectorBottomViewDelegate?
+    internal var delegate: BBSInspectorBottomViewDelegate?
     
     /**
     Internal views
     */
     private var contentLabel: UILabel!
     private var stripView: UIView!
-    private var cornerButton: InspectorCornerButton!
+    private var cornerButton: BBSInspectorCornerButton!
     
     /**
     Content displayed in bottom view label
@@ -75,15 +75,15 @@ internal class InspectorBottomView: UIView
     {
         reset()
         
-        let stripViewFrame = CGRectMake(0, 0, CGRectGetWidth(self.bounds) - InspectorBottomViewCornerSide / 2 + InspectorBottomViewRatioPixelDifference,
+        let stripViewFrame = CGRectMake(0, 0, CGRectGetWidth(self.bounds) - BBSInspectorBottomViewCornerSide / 2 + BBSInspectorBottomViewRatioPixelDifference,
             CGRectGetHeight(self.bounds))
         
         // Content label
         let delegateContent = delegate?.contentToDisplayInInspectorBottomView(self)
         let content = delegateContent == nil ? self.content : delegateContent
-        let contentLabel = UILabel(frame: CGRectMake(InspectorBottomViewGapX,
+        let contentLabel = UILabel(frame: CGRectMake(BBSInspectorBottomViewGapX,
             0,
-            CGRectGetWidth(stripViewFrame) - 2 * InspectorBottomViewGapX,
+            CGRectGetWidth(stripViewFrame) - 2 * BBSInspectorBottomViewGapX,
             CGRectGetHeight(stripViewFrame)))
         contentLabel.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
         contentLabel.font = UIFont.systemFontOfSize(12.0)
@@ -115,8 +115,8 @@ internal class InspectorBottomView: UIView
         self.addSubview(stripView)
         
         // Corner button
-        let cornerButton = InspectorCornerButton(frame: CGRectMake(CGRectGetWidth(self.bounds) - InspectorBottomViewCornerSide, 0, InspectorBottomViewCornerSide, CGRectGetHeight(self.bounds)))
-        cornerButton.setStyle(style: InspectorCornerButtonStyle.Plus, animated: false)
+        let cornerButton = BBSInspectorCornerButton(frame: CGRectMake(CGRectGetWidth(self.bounds) - BBSInspectorBottomViewCornerSide, 0, BBSInspectorBottomViewCornerSide, CGRectGetHeight(self.bounds)))
+        cornerButton.setStyle(style: BBSInspectorCornerButtonStyle.Plus, animated: false)
         cornerButton.addTarget(self, action: "toggle", forControlEvents: UIControlEvents.TouchUpInside)
         cornerButton.autoresizingMask = (UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin)
         self.addSubview(cornerButton)
@@ -145,10 +145,8 @@ internal class InspectorBottomView: UIView
     */
     internal func show(inView view: UIView)
     {
-        self.frame = CGRectMake(0, CGRectGetHeight(view.frame) - InspectorBottomViewCornerSide + InspectorBottomViewRatioPixelDifference, CGRectGetWidth(view.frame), InspectorBottomViewCornerSide)
-        
+        self.frame = CGRectMake(0, CGRectGetHeight(view.frame) - BBSInspectorBottomViewCornerSide + BBSInspectorBottomViewRatioPixelDifference, CGRectGetWidth(view.frame), BBSInspectorBottomViewCornerSide)
         setup()
-        
         view.addSubview(self)
     }
     
@@ -170,8 +168,8 @@ internal class InspectorBottomView: UIView
         }
         
         // Animation variables
-        let initialY = (opened ? 0 : CGRectGetHeight(self.bounds) + InspectorBottomViewRatioPixelDifference)
-        let finalY = (opened ? CGRectGetHeight(self.bounds) + InspectorBottomViewRatioPixelDifference : 0)
+        let initialY = (opened ? 0 : CGRectGetHeight(self.bounds) + BBSInspectorBottomViewRatioPixelDifference)
+        let finalY = (opened ? CGRectGetHeight(self.bounds) + BBSInspectorBottomViewRatioPixelDifference : 0)
         
         // Prepare animation
         stripView.frame.origin.y = initialY
@@ -188,7 +186,7 @@ internal class InspectorBottomView: UIView
         }
         
         // Update corner button style
-        cornerButton.setStyle(style: (opened ? InspectorCornerButtonStyle.Plus : InspectorCornerButtonStyle.Close), animated: true)
+        cornerButton.setStyle(style: (opened ? BBSInspectorCornerButtonStyle.Plus : BBSInspectorCornerButtonStyle.Close), animated: true)
     }
     
     // MARK: - UI Actions
@@ -199,14 +197,14 @@ internal class InspectorBottomView: UIView
     }
 }
 
-protocol InspectorBottomViewDelegate
+protocol BBSInspectorBottomViewDelegate
 {
     /**
     Called when user tap on an open inspector bottom view
     
     :param: inspectorBottomView The touched inspector bottom view
     */
-    func inspectorBottomViewTapped(bottomView: InspectorBottomView)
+    func inspectorBottomViewTapped(bottomView: BBSInspectorBottomView)
     
     /**
     Called when configuring the bottom view, default content will be used if return string is empty
@@ -214,5 +212,5 @@ protocol InspectorBottomViewDelegate
     :param: bottomView The calling InspectorBottomView object
     :returns: a string to be displayed in bottom view label
     */
-    func contentToDisplayInInspectorBottomView(bottomView: InspectorBottomView) -> String?
+    func contentToDisplayInInspectorBottomView(bottomView: BBSInspectorBottomView) -> String?
 }
