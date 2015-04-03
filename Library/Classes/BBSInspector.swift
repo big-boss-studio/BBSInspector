@@ -15,20 +15,20 @@ import UIKit
         let view = BBSInspectorBottomView()
         view.delegate = self
         return view
-    }()
+        }()
     
     lazy private var inspectorViewController: BBSInspectorViewController = {
         let viewController = BBSInspectorViewController()
         viewController.dataSource = self
         viewController.delegate = self
         return viewController
-    }()
+        }()
     
     lazy private var inspectorNavigationController: UINavigationController = {
         let navigationController = UINavigationController()
         navigationController.setViewControllers([self.inspectorViewController], animated: false)
         return navigationController
-    }()
+        }()
     
     /**
     Data source
@@ -138,5 +138,16 @@ import UIKit
         
         // Reset inspector bottom view to close state
         bottomView.toggle()
+    }
+    
+    // MARK: - Utils
+    
+    /**
+    Brings the bottom view to the front of its superview, should be called when changing the root
+    view controller of the main window
+    */
+    public func bringBottomViewToFront()
+    {
+        bottomView.superview?.bringSubviewToFront(bottomView)
     }
 }

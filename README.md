@@ -74,6 +74,12 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
 }
 ```
 
+## Caveat
+
+When changing the root view controller of your main window, the bottom view is suddendly hidden. Run the following code to ensure it comes back to front:
+
+```BBSInspector.sharedInstance.bringBottomViewToFront()```
+
 ## Objective-C
 
 This component is Objective-C compatible. 
