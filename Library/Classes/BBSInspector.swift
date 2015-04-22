@@ -1,6 +1,6 @@
 //
 //  BBSInspector.swift
-//  DANON
+//  BBSInspector
 //
 //  Created by Cyril Chandelier on 11/03/15.
 //  Copyright (c) 2015 Big Boss Studio. All rights reserved.

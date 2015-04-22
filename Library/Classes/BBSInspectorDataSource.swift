@@ -66,9 +66,9 @@ import UIKit
         
         // App information name
         let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey] as String))
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey] as String))
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey] as! String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey] as! String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as! String))
         
         // Device information
         let device = UIDevice.currentDevice()
@@ -79,8 +79,8 @@ import UIKit
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Identifier for vendor", comment: ""), caption: device.identifierForVendor.UUIDString))
         
         // Locale
-        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as String
-        let language = NSLocale.preferredLanguages().first as String
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let language = NSLocale.preferredLanguages().first as! String
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Locale", comment: ""), caption: "\(language)_\(countryCode)"))
         
         // Push notifications

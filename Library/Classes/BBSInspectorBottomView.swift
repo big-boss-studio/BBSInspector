@@ -32,8 +32,8 @@ internal class BBSInspectorBottomView: UIView
     */
     private var content: String? {
         if let infoDictionary = NSBundle.mainBundle().infoDictionary {
-            let appName = infoDictionary[kCFBundleNameKey] as String
-            let appVersion = infoDictionary[kCFBundleVersionKey] as String
+            let appName = infoDictionary[kCFBundleNameKey] as! String
+            let appVersion = infoDictionary[kCFBundleVersionKey] as! String
             return "\(appName) (\(appVersion))"
         }
         return nil
@@ -45,12 +45,6 @@ internal class BBSInspectorBottomView: UIView
     var opened: Bool = false
     
     // MARK: - Initializers
-    
-    override internal init()
-    {
-        super.init()
-        commonInit()
-    }
     
     override internal init(frame: CGRect)
     {
@@ -96,7 +90,7 @@ internal class BBSInspectorBottomView: UIView
         {
             stripView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
             stripView.frame = stripViewFrame
-            (stripView as UIVisualEffectView).contentView .addSubview(contentLabel)
+            (stripView as! UIVisualEffectView).contentView .addSubview(contentLabel)
         }
         else
         {

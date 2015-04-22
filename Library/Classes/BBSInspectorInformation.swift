@@ -28,7 +28,7 @@ let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
     */
     convenience public init(title: String, caption: String)
     {
-        self.init(title: title, caption: caption, captionColor: BBSInspectorInformationDefaultCaptionColor, nil)
+        self.init(title: title, caption: caption, captionColor: BBSInspectorInformationDefaultCaptionColor, action: nil)
     }
     
     /**
@@ -69,7 +69,7 @@ let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
         UIPasteboard.generalPasteboard().string = caption
         
         UIAlertView(title: NSLocalizedString("Information", comment: ""),
-            message: NSString(format: NSLocalizedString("<%@> copied to pasteboard", comment: ""), caption),
+            message: NSString(format: NSLocalizedString("<%@> copied to pasteboard", comment: ""), caption) as String,
             delegate: nil,
             cancelButtonTitle: NSLocalizedString("OK", comment: "")
             ).show()
