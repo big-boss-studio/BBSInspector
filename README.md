@@ -10,9 +10,11 @@ Extendable device and application information in your iOS application
 
 ## Installation
 
-Using CocoaPods (iOS 8 and above): ```pod 'BBSInspector'```
+Using CocoaPods (iOS 8 and above): ```pod 'BBSInspector'```. You will need to import the pod everywhere you want to use the library the Swift way:
 
-BBSInspector can also be used with older iOS 7 but CocoaPods doesn't support Swift pods for them. You can still copy the content of ```Library/Classes/``` into your project or use a Git submodule (prefered).
+```swift
+import BBSInspector
+```
 
 ## Getting started
 
@@ -76,10 +78,24 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
 
 ## Caveat
 
-When changing the root view controller of your main window, the bottom view is suddendly hidden. Run the following code to ensure it comes back to front:
+When changing the root view controller of your main window, the bottom view is suddendly hidden. Run the following code to ensure it comes back to front: 
 
-```BBSInspector.sharedInstance.bringBottomViewToFront()```
+```swift
+BBSInspector.sharedInstance.bringBottomViewToFront()
+```
 
 ## Objective-C
 
-This component is Objective-C compatible. 
+This component is Objective-C compatible. Mind that you will need to import your project Swift header before being able to use the library:
+
+```objc
+#import "YOUR_PROJECT_NAME-Swift.h"
+```
+
+The project also need to have the following build settings set to YES:
+- Embedded Content Contains Swift Code
+- Install Objective-C Compatibility Header
+
+## iOS 7
+
+BBSInspector can also be used with iOS 7 but CocoaPods doesn't support Swift pods for iOS 7. You can still copy the content of ```Library/Classes/``` into your project or use a Git submodule (prefered).
