@@ -189,6 +189,15 @@ internal class BBSInspectorBottomView: UIView
     {
         delegate?.inspectorBottomViewTapped(self)
     }
+    
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
+    {
+        if opened {
+            return super.hitTest(point, withEvent: event)
+        } else {
+            return CGRectContainsPoint(cornerButton.frame, self.convertPoint(point, toView: self)) ? self.cornerButton : nil
+        }
+    }
 }
 
 protocol BBSInspectorBottomViewDelegate
