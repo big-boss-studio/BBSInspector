@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc public class BBSInspectorDataSource
+@objc public class BBSInspectorDataSource: NSObject
 {
     /**
     Served data array
@@ -49,7 +49,7 @@ import UIKit
     
     // MARK: - Initializers
     
-    public init()
+    public override init()
     {
         informationItems = [BBSInspectorInformation]()
     }
@@ -66,8 +66,8 @@ import UIKit
         
         // App information name
         let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey] as! String))
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey] as! String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey as String] as! String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey as String] as! String))
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as! String))
         
         // Device information
@@ -76,18 +76,18 @@ import UIKit
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Device name", comment: ""), caption: device.name))
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("System name", comment: ""), caption: device.systemName))
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("System version", comment: ""), caption: device.systemVersion))
-        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Identifier for vendor", comment: ""), caption: device.identifierForVendor.UUIDString))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Identifier for vendor", comment: ""), caption: device.identifierForVendor!.UUIDString))
         
         // Locale
         let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
-        let language = NSLocale.preferredLanguages().first as! String
+        let language = NSLocale.preferredLanguages().first as String!
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Locale", comment: ""), caption: "\(language)_\(countryCode)"))
         
         // Push notifications
         var pushNotificationsEnabled = false
-        if UIApplication.sharedApplication().respondsToSelector(Selector("registerUserNotificationSettings:")) {
+        if #available(iOS 8.0, *) {
             let currentUserNotificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
-            pushNotificationsEnabled = (currentUserNotificationSettings.types != UIUserNotificationType.None)
+            pushNotificationsEnabled = (currentUserNotificationSettings!.types != UIUserNotificationType.None)
         } else {
             let enabledRemoteNotificationTypes = UIApplication.sharedApplication().enabledRemoteNotificationTypes()
             pushNotificationsEnabled = (enabledRemoteNotificationTypes != UIRemoteNotificationType.None)

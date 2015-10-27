@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc public class BBSInspector: BBSInspectorBottomViewDelegate, BBSInspectorViewControllerDataSource, BBSInspectorViewControllerDelegate
+@objc public class BBSInspector: NSObject, BBSInspectorBottomViewDelegate, BBSInspectorViewControllerDataSource, BBSInspectorViewControllerDelegate
 {
     lazy private var bottomView: BBSInspectorBottomView = {
         let view = BBSInspectorBottomView()
@@ -45,7 +45,7 @@ import UIKit
         return Singleton.instance
     }
     
-    // MARK: - State managament
+    // MARK: - State management
     
     /**
     Add a inspector component to the bottom of screen to enable Inspector features

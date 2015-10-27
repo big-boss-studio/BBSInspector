@@ -23,8 +23,8 @@ let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
     /**
     Convenience initializer, default black color will be applied
     
-    :param: title A String to display as the title
-    :param: caption A String to display as the caption
+    - parameter title: A String to display as the title
+    - parameter caption: A String to display as the caption
     */
     convenience public init(title: String, caption: String)
     {
@@ -34,10 +34,10 @@ let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
     /**
     Default initializer, create an InspectorInformation with given parameters
     
-    :param: title A String to display as the title
-    :param: caption A String to display as the caption
-    :param: captionColor The UIColor to draw the caption in
-    :param: action An optional block to be executed when selected, paste to pasteboard action is the default behaviour otherwise
+    - parameter title: A String to display as the title
+    - parameter caption: A String to display as the caption
+    - parameter captionColor: The UIColor to draw the caption in
+    - parameter action: An optional block to be executed when selected, paste to pasteboard action is the default behaviour otherwise
     */
     public init(title: String, caption: String, captionColor: UIColor, action: (() -> Void)?)
     {

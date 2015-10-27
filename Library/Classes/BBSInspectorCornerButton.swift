@@ -48,7 +48,7 @@ internal class BBSInspectorCornerButton: UIButton
         setup()
     }
     
-    required internal init(coder aDecoder: NSCoder)
+    required internal init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
         setup()
@@ -88,8 +88,8 @@ internal class BBSInspectorCornerButton: UIButton
     /**
     Update button style with or without animation
     
-    :param: style A registered InspectorCornerButtonStyle
-    :param: animated Wether or not the change should be animated
+    - parameter style: A registered InspectorCornerButtonStyle
+    - parameter animated: Wether or not the change should be animated
     */
     internal func setStyle(style newStyle: BBSInspectorCornerButtonStyle, animated: Bool)
     {
@@ -107,9 +107,6 @@ internal class BBSInspectorCornerButton: UIButton
         case BBSInspectorCornerButtonStyle.Close:
             line1path = self.createCenteredLineWithRadius(dimension / 2.0, angle: -CGFloat(M_PI_4), offset: CGPointZero)
             line2path = self.createCenteredLineWithRadius(dimension / 2.0, angle: CGFloat(M_PI_4), offset: CGPointZero)
-            
-        default:
-            return
         }
         
         // Animate if needed

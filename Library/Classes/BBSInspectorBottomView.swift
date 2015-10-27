@@ -32,8 +32,8 @@ internal class BBSInspectorBottomView: UIView
     */
     private var content: String? {
         if let infoDictionary = NSBundle.mainBundle().infoDictionary {
-            let appName = infoDictionary[kCFBundleNameKey] as! String
-            let appVersion = infoDictionary[kCFBundleVersionKey] as! String
+            let appName = infoDictionary[kCFBundleNameKey as String] as! String
+            let appVersion = infoDictionary[kCFBundleVersionKey as String] as! String
             return "\(appName) (\(appVersion))"
         }
         return nil
@@ -52,7 +52,7 @@ internal class BBSInspectorBottomView: UIView
         commonInit()
     }
     
-    required internal init(coder aDecoder: NSCoder)
+    required internal init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
         commonInit()
@@ -60,7 +60,7 @@ internal class BBSInspectorBottomView: UIView
     
     private func commonInit()
     {
-        self.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin)
+        self.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
     }
     
     // MARK: - Setup
@@ -79,14 +79,14 @@ internal class BBSInspectorBottomView: UIView
             0,
             CGRectGetWidth(stripViewFrame) - 2 * BBSInspectorBottomViewGapX,
             CGRectGetHeight(stripViewFrame)))
-        contentLabel.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+        contentLabel.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         contentLabel.font = UIFont.systemFontOfSize(12.0)
         contentLabel.textColor = UIColor.whiteColor()
         contentLabel.text = content
         
         // Use blur for strip view on iOS 8+ systems, a simple semi-transparent view otherwise
         var stripView: UIView
-        if NSClassFromString("UIVisualEffectView") != nil
+        if #available(iOS 8.0, *)
         {
             stripView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
             stripView.frame = stripViewFrame
@@ -99,12 +99,12 @@ internal class BBSInspectorBottomView: UIView
             let transparentView = UIView(frame: stripView.bounds)
             transparentView.backgroundColor = UIColor.blackColor()
             transparentView.alpha = 0.5
-            transparentView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+            transparentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
             
             stripView.addSubview(transparentView)
             stripView.addSubview(contentLabel)
         }
-        stripView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+        stripView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         stripView.hidden = true
         self.addSubview(stripView)
         
@@ -112,7 +112,7 @@ internal class BBSInspectorBottomView: UIView
         let cornerButton = BBSInspectorCornerButton(frame: CGRectMake(CGRectGetWidth(self.bounds) - BBSInspectorBottomViewCornerSide, 0, BBSInspectorBottomViewCornerSide, CGRectGetHeight(self.bounds)))
         cornerButton.setStyle(style: BBSInspectorCornerButtonStyle.Plus, animated: false)
         cornerButton.addTarget(self, action: "toggle", forControlEvents: UIControlEvents.TouchUpInside)
-        cornerButton.autoresizingMask = (UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin)
+        cornerButton.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleTopMargin]
         self.addSubview(cornerButton)
         
         // Gesture
@@ -173,10 +173,10 @@ internal class BBSInspectorBottomView: UIView
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.stripView.frame.origin.y = finalY
             }) { (finished) -> Void in
-            self.opened = !self.opened
-            if !self.opened {
-                self.stripView.hidden = true
-            }
+                self.opened = !self.opened
+                if !self.opened {
+                    self.stripView.hidden = true
+                }
         }
         
         // Update corner button style
@@ -196,15 +196,15 @@ protocol BBSInspectorBottomViewDelegate
     /**
     Called when user tap on an open inspector bottom view
     
-    :param: inspectorBottomView The touched inspector bottom view
+    - parameter inspectorBottomView: The touched inspector bottom view
     */
     func inspectorBottomViewTapped(bottomView: BBSInspectorBottomView)
     
     /**
     Called when configuring the bottom view, default content will be used if return string is empty
     
-    :param: bottomView The calling InspectorBottomView object
-    :returns: a string to be displayed in bottom view label
+    - parameter bottomView: The calling InspectorBottomView object
+    - returns: a string to be displayed in bottom view label
     */
     func contentToDisplayInInspectorBottomView(bottomView: BBSInspectorBottomView) -> String?
 }

@@ -49,7 +49,7 @@ internal class BBSInspectorViewController: UITableViewController
     
     required internal init(coder aDecoder: NSCoder)
     {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     // MARK: - View lifecycle
@@ -81,7 +81,7 @@ internal class BBSInspectorViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cellIdentifier = "CellID"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) 
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
         }
@@ -139,17 +139,17 @@ protocol BBSInspectorViewControllerDataSource
     /**
     Called when preparing the table view of a InspectorViewController object
     
-    :param: viewController The InspectorViewController controller asking for data count
-    :returns: The number of rows to display
+    - parameter viewController: The InspectorViewController controller asking for data count
+    - returns: The number of rows to display
     */
     func numberOfRowsInInspectorViewController(viewController: BBSInspectorViewController) -> Int
     
     /**
     Called before displaying a InspectorInformation in table view
     
-    :param: viewController The InspectorViewController object asking for data
-    :param: index The index of the asked information
-    :returns: The InspectorInformation object to be displayed for this given index
+    - parameter viewController: The InspectorViewController object asking for data
+    - parameter index: The index of the asked information
+    - returns: The InspectorInformation object to be displayed for this given index
     */
     func inspectorViewController(viewController: BBSInspectorViewController, informationAtIndex index: Int) -> BBSInspectorInformation
 }
@@ -159,8 +159,8 @@ protocol BBSInspectorViewControllerDelegate
     /**
     Called when user touch the cancel button and want to dismiss this view
     
-    :param: viewController The InspectorViewController that needs to be dismissed
-    :param: animated Wether or not it should use animation
+    - parameter viewController: The InspectorViewController that needs to be dismissed
+    - parameter animated: Wether or not it should use animation
     */
     func dismissInspectorViewController(viewController: BBSInspectorViewController, animated: Bool)
 }
