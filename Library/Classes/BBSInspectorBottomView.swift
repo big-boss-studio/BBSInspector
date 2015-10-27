@@ -33,8 +33,9 @@ internal class BBSInspectorBottomView: UIView
     private var content: String? {
         if let infoDictionary = NSBundle.mainBundle().infoDictionary {
             let appName = infoDictionary[kCFBundleNameKey as String] as! String
-            let appVersion = infoDictionary[kCFBundleVersionKey as String] as! String
-            return "\(appName) (\(appVersion))"
+            let appVersion = infoDictionary["CFBundleShortVersionString"] as! String
+            let appBuild = infoDictionary[kCFBundleVersionKey as String] as! String
+            return "\(appName) (\(appVersion) | \(appBuild))"
         }
         return nil
     }

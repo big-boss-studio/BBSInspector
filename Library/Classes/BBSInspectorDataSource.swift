@@ -69,6 +69,8 @@ import UIKit
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle name", comment: ""), caption: infoDictionary[kCFBundleNameKey as String] as! String))
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Bundle identifier", comment: ""), caption: infoDictionary[kCFBundleIdentifierKey as String] as! String))
         informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Version", comment: ""), caption: infoDictionary["CFBundleShortVersionString"] as! String))
+        informationItems.append(BBSInspectorInformation(title: NSLocalizedString("Build", comment: ""), caption: infoDictionary[kCFBundleVersionKey as String] as! String))
+        
         
         // Device information
         let device = UIDevice.currentDevice()
