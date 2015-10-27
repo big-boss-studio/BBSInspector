@@ -52,27 +52,36 @@ let BBSInspectorInformationDefaultCaptionColor = UIColor.blackColor()
     /**
     Execute associated action
     */
-    internal func executeAction()
+    internal func executeAction(context: UIViewController)
     {
         if let action = action {
             action()
         } else {
-            pasteToPasteboard()
+            pasteToPasteboard(context)
         }
     }
     
     /**
     Paste caption content into pasteboard
     */
-    internal func pasteToPasteboard()
+    internal func pasteToPasteboard(context: UIViewController)
     {
         UIPasteboard.generalPasteboard().string = caption
         
-        UIAlertView(title: NSLocalizedString("Information", comment: ""),
-            message: NSString(format: NSLocalizedString("<%@> copied to pasteboard", comment: ""), caption) as String,
-            delegate: nil,
-            cancelButtonTitle: NSLocalizedString("OK", comment: "")
-            ).show()
+        if #available(iOS 8.0, *)
+        {
+            let alertController = UIAlertController(title: NSLocalizedString("Information", comment: ""), message: NSString(format: NSLocalizedString("<%@> copied to pasteboard", comment: ""), caption) as String, preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+            context.presentViewController(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            UIAlertView(title: NSLocalizedString("Information", comment: ""),
+                message: NSString(format: NSLocalizedString("<%@> copied to pasteboard", comment: ""), caption) as String,
+                delegate: nil,
+                cancelButtonTitle: NSLocalizedString("OK", comment: "")
+                ).show()
+        }
     }
     
     // MARK: - Getters

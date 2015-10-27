@@ -111,7 +111,7 @@ internal class BBSInspectorViewController: UITableViewController
         
         if let dataSource = dataSource {
             let information = dataSource.inspectorViewController(self, informationAtIndex: indexPath.row)
-            information.executeAction()
+            information.executeAction(self)
         }
     }
     
