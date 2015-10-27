@@ -8,14 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name         = "BBSInspector"
-  s.version      = "0.1.3"
+  s.version      = "0.1.4"
   s.summary      = "Extendable device and application information in your iOS application"
   s.homepage     = "https://github.com/bigbossstudio-dev/BBSInspector"
   # s.screenshots = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
   s.license      = { :type => "MIT" }
   s.author       = { "Cyril Chandelier" => "cyril.chandelier@gmail.com" }
   s.platform     = :ios, '8.0'
-  s.source       = { :git => "https://github.com/bigbossstudio-dev/BBSInspector.git", :tag => "0.1.3" }
+  s.source       = { :git => "https://github.com/bigbossstudio-dev/BBSInspector.git", :tag => "0.1.4" }
   s.source_files = "Classes", "Library/Classes/*.{h,m,swift}"
   s.requires_arc = true
 end
