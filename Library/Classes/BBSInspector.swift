@@ -15,24 +15,24 @@ import UIKit
         let view = BBSInspectorBottomView()
         view.delegate = self
         return view
-        }()
+    }()
     
     lazy private var inspectorViewController: BBSInspectorViewController = {
         let viewController = BBSInspectorViewController()
         viewController.dataSource = self
         viewController.delegate = self
         return viewController
-        }()
+    }()
     
     lazy private var inspectorNavigationController: UINavigationController = {
         let navigationController = UINavigationController()
         navigationController.setViewControllers([self.inspectorViewController], animated: false)
         return navigationController
-        }()
+    }()
     
     /**
-    Data source
-    */
+     Data source
+     */
     public var dataSource: BBSInspectorDataSource = BBSInspectorDataSource()
     
     // MARK: - Shared instance
@@ -57,16 +57,16 @@ import UIKit
     }
     
     /**
-    Remove inspector component from screen
-    */
+     Remove inspector component from screen
+     */
     public func disableInspector()
     {
         bottomView.hide()
     }
     
     /**
-    Reload inspector content
-    */
+     Reload inspector content
+     */
     public func reloadInspectorInformation()
     {
         dataSource.reloadData()
@@ -149,5 +149,13 @@ import UIKit
     public func bringBottomViewToFront()
     {
         bottomView.superview?.bringSubviewToFront(bottomView)
+    }
+    
+    /**
+     The view controller  context can be use to present content
+     */
+    public func viewControllerContext() -> UIViewController
+    {
+        return self.inspectorViewController
     }
 }

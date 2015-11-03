@@ -215,6 +215,7 @@
 		F188A2AA1AADEC0900717239 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Big Boss Studio";
 				TargetAttributes = {
