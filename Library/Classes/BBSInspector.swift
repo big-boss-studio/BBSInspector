@@ -47,6 +47,10 @@ import UIKit
     
     // MARK: - State management
     
+    public var isEnabled: Bool {
+        return bottomView.superview != nil
+    }
+    
     /**
     Add a inspector component to the bottom of screen to enable Inspector features
     */
